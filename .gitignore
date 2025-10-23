@@ -1,0 +1,5 @@
+﻿yolov8x.pt
+*.pt
+runs/
+input_video/
+
