@@ -2,4 +2,4 @@
 *.pt
 runs/
 input_video/
-
+venv/

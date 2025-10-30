@@ -10,9 +10,12 @@ def main():
     player_tracker = PlayerTracker(model_path="models/player_detector.pt")
 
     # Run player tracking
-    player_tracker = player_tracker.get_object_tracks(video_frames) 
+    tracks = player_tracker.get_object_tracks(video_frames,
+                                             read_from_stub=True,
+                                             stub_path="stubs/player_tracks_stub.pkl"
+                                             ) 
 
-    print(player_tracker)
+    print(tracks)
     
    # Save video
     save_video(video_frames, "output_videos/video1_output.avi")

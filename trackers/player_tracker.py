@@ -21,8 +21,9 @@ class PlayerTracker:
   def get_object_tracks(self, frames,read_from_stub = False, stub_path = None):           #Before doing expensive detection and tracking, the function first checks if cached results exist and are valid.
 
     tracks = read_stub(read_from_stub, stub_path)
-    if tracks is not None:                                    #This checks if stub data was successfully loaded.
-       if len(tracks) == len(frames):                         #Ensures the loaded stub data matches the number of frames you’re currently trying to process.
+    if tracks is not None and isinstance(tracks, list):
+      if len(tracks) == len(frames):                                   #This checks if stub data was successfully loaded.
+                              #Ensures the loaded stub data matches the number of frames you’re currently trying to process.
            #If there’s already saved (cached) tracking data available from a previous run,
           #and it matches the number of frames we’re processing now,
           #then skip running YOLO and ByteTrack again — just use the old results.
@@ -47,7 +48,9 @@ class PlayerTracker:
 
           if cls_id == cls_names_inv['Player']:
             tracks[frame_num][track_id] = {"box" : bbox}
-            
+
+
+    save_stub(stub_path, tracks)     
     return tracks               #finds the players and follows them through the video
   
 

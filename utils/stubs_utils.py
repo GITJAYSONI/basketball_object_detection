@@ -2,7 +2,7 @@ import os
 import pickle 
 
 def save_stub(stub_path , stub_data):
-  if not os.path.exists(os.apth.dirname(stub_path)):
+  if not os.path.exists(os.path.dirname(stub_path)):
     os.mkdir(os.path.dirname(stub_path))
 
     if stub_path is not None:
