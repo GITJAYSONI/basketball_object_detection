@@ -1,22 +1,21 @@
-from ultralytics import YOLO
-import os
+from utils.video_utils import read_video, save_video
+from trackers import PlayerTracker
 
-print("Current directory:", os.getcwd())
-print("Files:", os.listdir())
+def main():
+      
+    #Read video
+    video_frames = read_video("input_video/video_1.mp4")
 
-# Check that your file exists
-video_path = r"C:\Users\jayso\OneDrive\Desktop\basketball\input_video\video_1.mp4"
+    # Initialize Player Tracker
+    player_tracker = PlayerTracker(model_path="models/player_detector.pt")
 
-if not os.path.exists(video_path):
-    raise FileNotFoundError(f" The video file was not found: {video_path}")
+    # Run player tracking
+    player_tracker = player_tracker.get_object_tracks(video_frames) 
 
-# Load model
-model = YOLO('yolov8x.pt')
+    print(player_tracker)
+    
+   # Save video
+    save_video(video_frames, "output_videos/video1_output.avi")
 
-# Run prediction
-results = model.predict(video_path, save=True)
-
-print(results)
-print('=========================')
-for box in results[0].boxes:
-    print(box)
+if __name__ == "__main__":
+    main()
