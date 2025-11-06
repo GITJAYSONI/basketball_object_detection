@@ -1,0 +1,21 @@
+﻿yolov8x.pt
+*.pt
+runs/
+input_video/
+venv/
+# Python
+__pycache__/
+*.pyc
+
+# Data or model files
+*.pkl
+
+# Video output
+*.avi
+
+# Virtual environment
+venv/
+
+# VS Code settings
+.vscode/
+
